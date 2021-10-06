@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <input type="number" placeholder="number" id="input">
+    <!-- for xmlhttp -->
+    <!-- <button id="btnrequest" type="button" onclick="loadDoc()">request</button><br> -->
+    <div id="div"></div>
+    <!-- for axios -->
+    <button  type="button" onclick="loadDocApi()" >request</button><br>
+    
+        
+        <select name="cauntries" id="select">
+        
+        </select>
+        <br><br>
+        <!-- <input type="submit" value="Submit"> -->
+      
+
+
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let  exvhangeTo, rate;
+        let input = document.getElementById("input").value;
+        let btn = document.getElementById("btn");
+        let div = document.getElementById("div");
+        let select = document.getElementById("select");
+
+        // function loadDoc() {
+        //     const jasonSaver = new XMLHttpRequest;
+        //     jasonSaver.onreadystatechange = function () {
+        //         if (this.readyState === 4 && this.status === 200) {
+        //             let saveResponse = JSON.parse(this.responseText);
+        //             console.log(saveResponse);
+        //             console.log(saveResponse.base);
+        //             console.log(saveResponse.rates.ILS);
+        //                 let rate = `${input.value * saveResponse.rates.ILS}`
+        //                 // div.innerHTML += `${input.value * saveResponse.rates.ILS}`
+        //                 console.log(rate);
+
+        //         }
+        //     }
+        //     const APIKEY = "a9619017a2d18516b8c45f7d6d731f10";
+        //     const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${APIKEY}`
+        //     jasonSaver.open("GET", url);
+        //     jasonSaver.send();
+        // }
+        
+        // let API = "a9619017a2d18516b8c45f7d6d731f10"
+        //     let url = `http://api.exchangeratesapi.io/v1/latest?access_key=${API}`;
+
+        // function changeRate() {
+        //     axios
+        //         .get(url)
+        //         .then(function (response) {
+        //             console.log(response);
+        //             if (response.status === 200) {
+        //                 console.log(response.data.rates.EUR);
+        //                 let rate=input.value*response.data.rates.EUR;
+        //                 console.log(rate);
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log("eror");
+        //             // handle error
+        //             console.log(error);
+        //         });
+
+        // }
+
+
+// etgar
+
+
+let API = "a9619017a2d18516b8c45f7d6d731f10"
+            let url = `http://api.exchangeratesapi.io/v1/latest?access_key=${API}`;
+            axios
+                .get(url)
+                .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                        console.log(response.data.rates.EUR);
+                        let rate=response.data.rates;
+                        console.log(rate);
+                                for (const key in rate) {
+                                    select.innerText += `<option>${key}</option>`
+                                };
+                                // console.log(x);
+                    }
+                })
+                .catch(function (error) {
+                    console.log("eror");
+                    // handle error
+                    console.log(error);
+                });
+
+        function loadDocApi(){
+          exvhangeTo = (input/rete.ILS)*rate[select.value];
+          document.getElementById(div).innerText += `${ exvhangeTo}${select.value}`;
+        }
+
+    
+
+    </script>
+</body>
+
+</html>
